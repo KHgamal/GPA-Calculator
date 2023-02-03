@@ -54,7 +54,7 @@ class _Screen3State extends State<Screen3> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                list.isEmpty?
+
             Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Table(
@@ -101,7 +101,7 @@ class _Screen3State extends State<Screen3> {
                       ]),
                     ],
                   ),
-                ) : ListView.builder(
+                ), list.isEmpty?const SizedBox(): ListView.builder(
                     itemCount: list.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
