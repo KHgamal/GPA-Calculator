@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 class CustomText extends StatelessWidget {
-  const CustomText({Key? key}) : super(key: key);
-
+  const CustomText({Key? key, required this.text}) : super(key: key);
+final String text;
   @override
   Widget build(BuildContext context) {
-    return  const Padding(
-      padding:  EdgeInsets.only(right: 25 , top: 10),
-      child:  Text(
-        "بسم الله نبدأ ...",
+    return   Padding(
+      padding:  const EdgeInsets.only(right: 25 , top: 10),
+      child: Text(
+        text,
         textDirection: TextDirection.rtl,
-        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
       ),
     );
   }

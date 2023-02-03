@@ -3,8 +3,9 @@ import 'package:gpa_calculator/UI/widgets/constants.dart';
 
 
 class SecondButton extends StatelessWidget {
-  const SecondButton({Key? key, required this.onPressed}) : super(key: key);
+  const SecondButton({Key? key, required this.onPressed, required this.text}) : super(key: key);
   final Function() onPressed;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -21,8 +22,8 @@ class SecondButton extends StatelessWidget {
                   )
               )
           ),
-          child: const Text("احسب",textDirection: TextDirection.rtl,
-            style: TextStyle(fontSize:23,
+          child:  Text(text,textDirection: TextDirection.rtl,
+            style: const TextStyle(fontSize:23,
               fontWeight: FontWeight.bold),),
         ),
       ),

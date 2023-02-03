@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gpa_calculator/UI/pages/custom_end_drawer.dart';
+import 'package:gpa_calculator/UI/widgets/components.dart';
 import 'package:gpa_calculator/UI/widgets/custom_button.dart';
 import 'package:gpa_calculator/UI/widgets/second_button.dart';
 
@@ -16,12 +18,13 @@ class Screen4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appbar,
+      appBar: myAppBar(),
+      endDrawer:const CustomEndDrawer(),
       body: SingleChildScrollView(
         child: Column(
             crossAxisAlignment:CrossAxisAlignment.end,
             children: [
-              const CustomText(),
+              const CustomText(text: "بسم الله نبدأ ...",),
               Container(
                 margin: const EdgeInsets.all(16),
                 padding: const EdgeInsets.all(16),
@@ -149,11 +152,14 @@ class Screen4 extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const CustomButton(),
+                     CustomButton(
+                      onPressed: (){},
+                    ),
                   ],
                 ),
               ),
                SecondButton(
+               text: "احسب",
                 onPressed:() {
                   }
 
