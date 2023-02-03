@@ -19,21 +19,12 @@ class Screen3 extends StatefulWidget {
   State<Screen3> createState() => _Screen3State();
 }
 
-class _Screen3State extends State<Screen3> {
-  @override
+class _Screen3State extends State<Screen3> {List<TableC> list = [];
+TextEditingController courseName = TextEditingController();
+TextEditingController hours = TextEditingController();
+
+@override
   Widget build(BuildContext context) {
-    List<TableC> list = [];
-    TextEditingController courseName = TextEditingController();
-    TextEditingController hours = TextEditingController();
-    addingCourse() {
-      setState(() {
-        list.add(TableC(courseName.text,DropDown.selectedItem! , hours.text));
-        print(list[0].gpa+list[0].hours+list[0].courseName+'\n');
-        print(list.length);
-        courseName.clear();
-        hours.clear();
-      });
-    }
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -101,7 +92,10 @@ class _Screen3State extends State<Screen3> {
                       ]),
                     ],
                   ),
-                ), list.isEmpty?const SizedBox(): ListView.builder(
+                ), list.isEmpty?const SizedBox():
+                ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
                     itemCount: list.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
@@ -150,8 +144,19 @@ class _Screen3State extends State<Screen3> {
                                   ),
                                   children: [
                                     TableRow(children: [
-                                      Text(list[index].gpa),
-                                      Text(list[index].hours)
+                                      SizedBox(
+                                        height: 50,
+                                          child: Padding(
+                                              padding: const EdgeInsets.all(10),
+                                              child: Text(list[index].gpa, style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w300),))),
+                                      SizedBox(
+                                      height:50,
+                                      child: Padding(padding: const EdgeInsets.all(10),
+                                      child: Text(list[index].hours, style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w300),)))
                                     ]),
                                   ]),
                             ]),
@@ -170,5 +175,14 @@ class _Screen3State extends State<Screen3> {
         ]),
       ),
     );
+
+  }
+
+  addingCourse() {
+    setState(() {
+      list.add(TableC(courseName.text,DropDown.selectedItem! , hours.text));
+      courseName.clear();
+      hours.clear();
+    });
   }
 }
