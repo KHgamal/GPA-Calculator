@@ -9,7 +9,6 @@ class DropDown extends StatefulWidget {
 }
 
 class _DropDownState extends State<DropDown> {
-
   List<DropdownMenuItem<String>> _createList(List list) {
     return list
         .map<DropdownMenuItem<String>>(
@@ -26,10 +25,11 @@ class _DropDownState extends State<DropDown> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: DropdownButton(
+      child: DropdownButtonFormField(
         items: _createList(widget.list),
         hint: Text(widget.initialText),
         value: DropDown.selectedItem,
+        validator: (value) => value == null ? 'field required' : null,
         onChanged: (String? value) => setState(() {
           DropDown.selectedItem = value ?? "";
         }),

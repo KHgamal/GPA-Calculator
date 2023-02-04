@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart.';
 import 'package:gpa_calculator/UI/model.dart';
 import 'package:gpa_calculator/UI/pages/custom_end_drawer.dart';
 import 'package:gpa_calculator/UI/widgets/calculating%20screen/container/custom_text_field.dart';
@@ -24,6 +25,7 @@ class Screen3 extends StatefulWidget {
 class _Screen3State extends State<Screen3> {List<TableC> list = [];
 TextEditingController courseName = TextEditingController();
 TextEditingController hours = TextEditingController();
+final formKey = GlobalKey<FormState>();
 
 @override
   Widget build(BuildContext context) {
@@ -47,32 +49,39 @@ TextEditingController hours = TextEditingController();
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TableElements(
-                  element1: CustomTextField(
-                    hintText: 'Name of course',
-                    controller: courseName,
+                Form(
+                  key:formKey ,
+                  child: TableElements(
+                    element1: CustomTextField(
+                      filteringTextInputFormatter: FilteringTextInputFormatter.allow(RegExp("[a-z A-Z 0-9]")),
+                      keyboardType:TextInputType.text,
+                      hintText: 'Name of course',
+                      controller: courseName,
+                    ),
+                    element2: const DropDown(
+                    initialText: "Your GPA",
+                    list: [
+                      "A+",
+                      "A",
+                      "A-",
+                      "B+",
+                      "B",
+                      "B-",
+                      "C+",
+                      "C",
+                      "C-",
+                      "D+",
+                      "D",
+                      "F"
+                    ],
                   ),
-                  element2: const DropDown(
-                  initialText: "Your GPA",
-                  list: [
-                    "A+",
-                    "A",
-                    "A-",
-                    "B+",
-                    "B",
-                    "B-",
-                    "C+",
-                    "C",
-                    "C-",
-                    "D+",
-                    "D",
-                    "F"
-                  ],
-                ),
-                  element3:  CustomTextField(
-                  hintText: 'Hours of subjects',
-                  controller: hours,
-                ),
+                    element3:  CustomTextField(
+                      filteringTextInputFormatter:FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      keyboardType: TextInputType.number,
+                    hintText: 'Hours of subjects',
+                    controller: hours,
+                  ),
+                  ),
                 ), list.isEmpty?const SizedBox():
                 ListView.builder(
                     scrollDirection: Axis.vertical,
@@ -94,18 +103,24 @@ TextEditingController hours = TextEditingController();
                                     fontWeight: FontWeight.w400),
                               ),
                               const Expanded(child:  SizedBox()),
-                              const Icon(
-                                Icons.edit,
-                                size: 25,
-                                color: customColor,
+                               IconButton(
+                                 onPressed:(){} ,
+                                 icon: const Icon(
+                                  Icons.edit,
+                                  size: 25,
+                                  color: customColor,
                               ),
+                               ),
                               const SizedBox(
                                 width: 8,
                               ),
-                              const Icon(
-                                Icons.delete,
-                                size: 25,
-                                color: Colors.red,
+                              IconButton(
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    size: 25,
+                                    color: Colors.red,
+                                  ),
+                                  onPressed: ()=>deletingCourse(index)
                               )
                             ],
                           ),
@@ -114,13 +129,26 @@ TextEditingController hours = TextEditingController();
                         element3:Information(text:list[index].hours),
                       );
                     }),
-                 CustomButton(onPressed: ()=>addingCourse(),),
+                 CustomButton(onPressed: (){
+                   if(formKey.currentState!.validate()) {
+                   addingCourse();
+                 }},),
               ],
             ),
           ),
           SecondButton(
             text: 'احسب',
-            onPressed: () => displayDialog(context,list),
+            onPressed: () {
+                  if(list.isEmpty){
+                    if(formKey.currentState!.validate()&&list.isNotEmpty) {
+                      displayDialog(context,list);
+                    }
+                  }
+                  else{
+                    displayDialog(context,list);
+                  }
+
+            } ,
           ),
         ]),
       ),
@@ -169,4 +197,11 @@ TextEditingController hours = TextEditingController();
       hours.clear();
     });
   }
+
+deletingCourse(int index){
+  setState(() {
+    list.remove(list[index]);
+
+  });
+}
 }

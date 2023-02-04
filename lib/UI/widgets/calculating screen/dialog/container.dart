@@ -19,7 +19,11 @@ class Content extends StatelessWidget {
         children:[
           Row(
             children: [
-              Image.asset("assets/exit.png",width: 40, height: 40,),
+              IconButton(icon: Image.asset("assets/exit.png",width: 40, height: 40,),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+              ),
             ],
           ),
           Center(

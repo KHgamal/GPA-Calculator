@@ -26,12 +26,8 @@ calculatingGPA(List<TableC> list){
   double sum=0 ;
   int sumOfHours=0;
   for(int i=0;i<list.length;i++){
-    print("gpa = ${list[i].gpaValue}");
-    print("hours = ${int.parse(list[i].hours)}");
     sum+=list[i].gpaValue*int.parse(list[i].hours);
-    print("sum = ${sum}");
     sumOfHours+=int.parse(list[i].hours);
-    print("sum of hours = ${sumOfHours}");
   }
   double result=sum/sumOfHours;
   return result;
