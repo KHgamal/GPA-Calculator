@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:gpa_calculator/UI/widgets/components.dart';
 import 'package:gpa_calculator/UI/widgets/constants.dart';
 
 class AboutUs extends StatelessWidget {
@@ -10,29 +10,12 @@ class AboutUs extends StatelessWidget {
     List<String> names = ['Designer','ضحي محمد','Developer','خديجة جمال','رحمة أسامة','الاء نبيل'] ;
     List jobs = ['','UI/UX Designer','','Flutter Developer','Flutter Developer','Flutter Developer'] ;
     return Scaffold(
-      //reusable component
-      appBar: AppBar(
-        backgroundColor:bgColor,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text('اعرف عننا',style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-            color: Colors.black
-        ),),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset('assets/calculator.png'),
-        ),
-        actions:[
-          GestureDetector(
-            onTap: (){
-              Navigator.pop(context);
-            },
-            child: const Icon(Icons.arrow_forward_ios_outlined,color: customColor,) ,
-          ),
-        ],
-      ),
+      appBar: myAppBar(true,'اعرف عننا',IconButton(
+        onPressed: (){
+          Navigator.pop(context);
+        },
+        icon:const Icon(Icons.arrow_forward_ios_outlined,color: customColor,) ,
+      ),),
       backgroundColor: bgColor,
       body: Padding(
         padding: const EdgeInsets.all(8.0),

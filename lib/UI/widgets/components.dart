@@ -5,8 +5,7 @@ import 'package:gpa_calculator/UI/widgets/constants.dart';
 import '../pages/about_us.dart';
 
 //appbar
-AppBar myAppBar(
-    ){
+AppBar myAppBar(bool centerTitle,String text ,Widget action ){
   return AppBar(
     backgroundColor: bgColor,
     elevation: 0,
@@ -14,20 +13,13 @@ AppBar myAppBar(
       padding: const EdgeInsets.all(8.0),
       child: Image.asset('assets/calculator.png'),
     ),
-    title: const Text("GPA Calculator",
-      style: TextStyle(
+    centerTitle: centerTitle,
+    title:Text(text,
+      style: const TextStyle(
           color: Colors.black
       ),
     ),
-    actions: [
-      Builder(
-          builder: (context) {
-            return IconButton(onPressed: (){
-              return Scaffold.of(context).openEndDrawer();
-            }, icon: Image.asset('assets/list.png'));
-          }
-      )
-    ],
+    actions: [action],
   );
 }
 

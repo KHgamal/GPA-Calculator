@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_calculator/UI/widgets/constants.dart';
 class Sticker extends StatelessWidget {
-  const Sticker({Key? key}) : super(key: key);
-
+  const Sticker({Key? key, required this.result}) : super(key: key);
+   final double result;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -13,8 +13,8 @@ class Sticker extends StatelessWidget {
         child: CircleAvatar(
           backgroundColor: Colors.white,
           radius:23,
-          child:Image.asset("assets/sad.png"),
-          //Image.asset("assets/happy.png"),
+          child:result<2.0?Image.asset("assets/sad.png"):
+          Image.asset("assets/happy.png",),
         ),
       ),
     );

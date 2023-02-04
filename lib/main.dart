@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gpa_calculator/UI/pages/custom_end_drawer.dart';
-import 'package:gpa_calculator/UI/pages/home_screen.dart';
-import 'package:gpa_calculator/UI/widgets/components.dart';
+import 'package:gpa_calculator/UI/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +9,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor:const Color(0xFFD3E2ED),
-        appBar:myAppBar(),
-        endDrawer: const CustomEndDrawer(),
-        body: const Home(),
-      ),
+      home:  CustomSplashScreen(),
     );
   }
 }

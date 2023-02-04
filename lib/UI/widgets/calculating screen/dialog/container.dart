@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_calculator/UI/widgets/constants.dart';
 class Content extends StatelessWidget {
-  const Content({Key? key}) : super(key: key);
-
+  const Content({Key? key, required this.result}) : super(key: key);
+  final double result;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,30 +22,28 @@ class Content extends StatelessWidget {
               Image.asset("assets/exit.png",width: 40, height: 40,),
             ],
           ),
-         const Center(
-            child:  Text("احنا اسفين" , textDirection: TextDirection.rtl,style:
-            TextStyle(fontSize: 35, fontWeight: FontWeight.bold,color: Color(0xffF67F7F)),
-            ),
-           /*
-           Text("عااش" , textDirection: TextDirection.rtl,style:
+          Center(
+            child:result<2.0? const Text("احنا اسفين" , textDirection: TextDirection.rtl,
+            style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold,color: Color(0xffF67F7F)),
+            ):
+            const Text("عااش" , textDirection: TextDirection.rtl,style:
            TextStyle(fontSize: 35, fontWeight: FontWeight.bold,color: Color(0xff0D883E)),),
-           */
+
           ),
-          const Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 12),
-            child:  Text("معلش ، ربنا يعوضك ان شاء الله وخيرها في غيرها ، استعن بالله ولا تعجز . " ,
+           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child:result<2.0? const Text("معلش ، ربنا يعوضك ان شاء الله وخيرها في غيرها ، استعن بالله ولا تعجز . " ,
+              textDirection: TextDirection.rtl,style:TextStyle(fontSize: 20, )):
+            const Text(".ماشاء الله ، ربنا يبارك ، روح فرح الحاج والحاجة بقا وادعيلنا" ,
               textDirection: TextDirection.rtl,style:TextStyle(fontSize: 20, )),
-             /*
-             Text(".ماشاء الله ، ربنا يبارك ، روح فرح الحاج والحاجة بقا وادعيلنا" ,
-              textDirection: TextDirection.rtl,style:TextStyle(fontSize: 20, )),
-             */
+
           ),
           const Center(
             child:  Text("Your GPA is" ,style:
             TextStyle(fontSize: 25, fontWeight: FontWeight.w400, ),),
           ),
-          const Center(
-            child:  Text("1.43" ,style: TextStyle(fontSize: 50, color: customColor,
+           Center(
+            child: Text(result.toStringAsFixed(3),style:const TextStyle(fontSize: 50, color: customColor,
                ),),
           ),
         ],
