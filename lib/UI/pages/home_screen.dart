@@ -23,35 +23,37 @@ class Home extends StatelessWidget {
         ),),
         endDrawer: const CustomEndDrawer(),
         body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset('assets/calculator.png',
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
-              ),
-               const Padding(
-                  padding: EdgeInsets.only(left: 30.0,right:30.0 ,top:30.0 ),
-                  child:Text("يلا ابدأ واحسب ال GPA ، ادعي قبل ما تبدأ و نصيحه ابعد عن المكان اللي فيه الحاج و الحاجه",
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                    ),)
-              ),
-              const CustomText(text: "جاهز يا بطل ؟",),
-              Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: SecondButton(
-                    text: 'ابدأ بالحساب',
-                    onPressed: ()=>  Navigator.push(context, MaterialPageRoute(builder:(ctx)=> const Screen3()))
-                    ,
-                  )
-              )
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset('assets/calculator.png',
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                ),
+                 const Padding(
+                    padding: EdgeInsets.only(left: 30.0,right:30.0 ,top:30.0 ),
+                    child:Text("يلا ابدأ واحسب ال GPA ، ادعي قبل ما تبدأ و نصيحه ابعد عن المكان اللي فيه الحاج و الحاجه",
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                      ),)
+                ),
+                const CustomText(text: "جاهز يا بطل ؟",),
+                Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: SecondButton(
+                      text: 'ابدأ بالحساب',
+                      onPressed: ()=>  Navigator.push(context, MaterialPageRoute(builder:(ctx)=> const Screen3()))
+                      ,
+                    )
+                )
 
-            ],
+              ],
 
+            ),
           ),
 
     ),

@@ -8,6 +8,7 @@ class CustomSplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       // duration: for the screen appearance duration
+      duration: 1300,
       splash: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -23,7 +24,7 @@ class CustomSplashScreen extends StatelessWidget {
       splashIconSize: 400,
      splashTransition: SplashTransition.fadeTransition,
       //for the fadeTransition ( splashTransition ) duration
-      animationDuration: const Duration(seconds: 2),
+      animationDuration: const Duration(seconds:1),
       backgroundColor: bgColor,
     );
   }
