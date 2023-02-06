@@ -5,7 +5,7 @@ import 'package:gpa_calculator/UI/pages/splash_screen.dart';
 void main() {
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled:false,
       builder: (context) {
         return const MyApp();
       }

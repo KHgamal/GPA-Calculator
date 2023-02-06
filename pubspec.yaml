@@ -38,11 +38,18 @@ dependencies:
   cupertino_icons: ^1.0.2
   animated_splash_screen: ^1.3.0
   device_preview: ^1.1.0
+  flutter_launcher_icons: ^0.11.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/calculator.png"
+  min_sdk_android: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

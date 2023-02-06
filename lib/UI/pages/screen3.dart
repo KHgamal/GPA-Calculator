@@ -46,164 +46,163 @@ bool edit=false;
           const CustomText(
             text: "بسم الله نبدأ ...",
           ),
-          SingleChildScrollView(
-            child: ContainerOfTables(
-              child: Form(
-                key:formKey ,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                   !edit?
-                   Column(children: [
-                     TableElements(
-                     element1: CustomTextField(
-                       filteringTextInputFormatter: FilteringTextInputFormatter.allow(RegExp("[a-z A-Z 0-9 \u0621-\u064A0-9 ]")),
-                       keyboardType:TextInputType.text,
-                       hintText: 'Name of course',
-                       controller: courseName,
-                     ),
-                     element2: const DropDown(
-                       initialText: "Your GPA",
-                       list: [
-                         "A+",
-                         "A",
-                         "A-",
-                         "B+",
-                         "B",
-                         "B-",
-                         "C+",
-                         "C",
-                         "C-",
-                         "D+",
-                         "D",
-                         "F"
-                       ],
-                     ),
-                     element3:  CustomTextField(
-                       filteringTextInputFormatter:FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                       keyboardType: TextInputType.number,
-                       hintText: 'Hours of subjects',
-                       controller: hours,
-                     ),
+          ContainerOfTables(
+            child: Form(
+              key:formKey ,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                 !edit?
+                 Column(children: [
+                   TableElements(
+                   element1: CustomTextField(
+                     filteringTextInputFormatter: FilteringTextInputFormatter.allow(RegExp("[a-z A-Z 0-9 \u0621-\u064A0-9 ]")),
+                     keyboardType:TextInputType.text,
+                     hintText: 'Name of course',
+                     controller: courseName,
                    ),
-                     list.isEmpty?const SizedBox():
-                   ListView.builder(
-                       scrollDirection: Axis.vertical,
-                       shrinkWrap: true,
-                       itemCount: list.length,
-                       itemBuilder: (BuildContext context, int index) {
-                         return TableElements(
-                           element1:SizedBox(
-                             height: 50,
-                             child: Row(
-                               children: [
-                                 const SizedBox(
-                                   width: 10,
+                   element2: const DropDown(
+                     initialText: "Your GPA",
+                     list: [
+                       "A+",
+                       "A",
+                       "A-",
+                       "B+",
+                       "B",
+                       "B-",
+                       "C+",
+                       "C",
+                       "C-",
+                       "D+",
+                       "D",
+                       "F"
+                     ],
+                   ),
+                   element3:  CustomTextField(
+                     filteringTextInputFormatter:FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                     keyboardType: TextInputType.number,
+                     hintText: 'Hours of subjects',
+                     controller: hours,
+                   ),
+                 ),
+                   list.isEmpty?const SizedBox():
+                 ListView.builder(
+                     physics: NeverScrollableScrollPhysics(),
+                     scrollDirection: Axis.vertical,
+                     shrinkWrap: true,
+                     itemCount: list.length,
+                     itemBuilder: (BuildContext context, int index) {
+                       return TableElements(
+                         element1:SizedBox(
+                           height: 50,
+                           child: Row(
+                             children: [
+                               const SizedBox(
+                                 width: 10,
+                               ),
+                               Text(
+                                 list[index].courseName,
+                                 style: const TextStyle(
+                                     fontSize: 25,
+                                     fontWeight: FontWeight.w400),
+                               ),
+                               const Expanded(child:  SizedBox()),
+                               IconButton(
+                                 onPressed:()=>editingCourse(index) ,
+                                 icon: const Icon(
+                                   Icons.edit,
+                                   size: 25,
+                                   color: customColor,
                                  ),
-                                 Text(
-                                   list[index].courseName,
-                                   style: const TextStyle(
-                                       fontSize: 25,
-                                       fontWeight: FontWeight.w400),
-                                 ),
-                                 const Expanded(child:  SizedBox()),
-                                 IconButton(
-                                   onPressed:()=>editingCourse(index) ,
+                               ),
+                               const SizedBox(
+                                 width: 8,
+                               ),
+                               IconButton(
                                    icon: const Icon(
-                                     Icons.edit,
+                                     Icons.delete,
                                      size: 25,
-                                     color: customColor,
+                                     color: Colors.red,
                                    ),
-                                 ),
-                                 const SizedBox(
-                                   width: 8,
-                                 ),
-                                 IconButton(
-                                     icon: const Icon(
-                                       Icons.delete,
-                                       size: 25,
-                                       color: Colors.red,
-                                     ),
-                                     onPressed: ()=>deletingCourse(index)
-                                 )
-                               ],
-                             ),
-                           ) ,
-                           element2:Information(text:list[index].gpa),
-                           element3:Information(text:list[index].hours),
-                         );
-                       })],)
-                       : ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: list.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return selectedIndex==index?  TableElements(
-                            element1: CustomTextField(
-                              filteringTextInputFormatter: FilteringTextInputFormatter.allow(RegExp("[a-z A-Z 0-9 \u0621-\u064A0-9 ]")),
-                              keyboardType:TextInputType.text,
-                              hintText: 'Name of course',
-                              controller: courseName,
-                            ),
-                            element2: const DropDown(
-                              initialText: "Your GPA",
-                              list: [
-                                "A+",
-                                "A",
-                                "A-",
-                                "B+",
-                                "B",
-                                "B-",
-                                "C+",
-                                "C",
-                                "C-",
-                                "D+",
-                                "D",
-                                "F"
+                                   onPressed: ()=>deletingCourse(index)
+                               )
+                             ],
+                           ),
+                         ) ,
+                         element2:Information(text:list[index].gpa),
+                         element3:Information(text:list[index].hours),
+                       );
+                     })],)
+                     : ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return selectedIndex==index?  TableElements(
+                          element1: CustomTextField(
+                            filteringTextInputFormatter: FilteringTextInputFormatter.allow(RegExp("[a-z A-Z 0-9 \u0621-\u064A0-9 ]")),
+                            keyboardType:TextInputType.text,
+                            hintText: 'Name of course',
+                            controller: courseName,
+                          ),
+                          element2: const DropDown(
+                            initialText: "Your GPA",
+                            list: [
+                              "A+",
+                              "A",
+                              "A-",
+                              "B+",
+                              "B",
+                              "B-",
+                              "C+",
+                              "C",
+                              "C-",
+                              "D+",
+                              "D",
+                              "F"
+                            ],
+                          ),
+                          element3:  CustomTextField(
+                            filteringTextInputFormatter:FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                            keyboardType: TextInputType.number,
+                            hintText: 'Hours of subjects',
+                            controller: hours,
+                          ),
+                        ) : TableElements(
+                          element1:SizedBox(
+                            height: 50,
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  list[index].courseName,
+                                  style: const TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                const Expanded(child:  SizedBox()),
+                                IconButton(
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      size: 25,
+                                      color: Colors.red,
+                                    ),
+                                    onPressed: ()=>deletingCourse(index)
+                                )
                               ],
                             ),
-                            element3:  CustomTextField(
-                              filteringTextInputFormatter:FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                              keyboardType: TextInputType.number,
-                              hintText: 'Hours of subjects',
-                              controller: hours,
-                            ),
-                          ) : TableElements(
-                            element1:SizedBox(
-                              height: 50,
-                              child: Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    list[index].courseName,
-                                    style: const TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  const Expanded(child:  SizedBox()),
-                                  IconButton(
-                                      icon: const Icon(
-                                        Icons.delete,
-                                        size: 25,
-                                        color: Colors.red,
-                                      ),
-                                      onPressed: ()=>deletingCourse(index)
-                                  )
-                                ],
-                              ),
-                            ) ,
-                            element2:Information(text:list[index].gpa),
-                            element3:Information(text:list[index].hours),
-                          );
-                        }),
-                    CustomButton(onPressed: (){
-                      if(formKey.currentState!.validate()) {
-                        addingCourse();
-                      }},),
-                  ],
-                ),
+                          ) ,
+                          element2:Information(text:list[index].gpa),
+                          element3:Information(text:list[index].hours),
+                        );
+                      }),
+                  CustomButton(onPressed: (){
+                    if(formKey.currentState!.validate()) {
+                      addingCourse();
+                    }},),
+                ],
               ),
             ),
           ),
